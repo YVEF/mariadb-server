@@ -1487,8 +1487,8 @@ static void maybe_convert_charset(const char **user, const char **password,
 static bool do_connect(MYSQL *mysql, CLNT_CONNECT_OPTIONS *opts, ulong flags)
 {
 #ifdef _WIN32
-  maybe_convert_charset(&opts.user, &opts.password,
-                        &opts.database, opts.default_charset);
+  maybe_convert_charset((const char**)&opts->user, (const char**)&opts->password,
+                        (const char**)&opts->database, opts->default_charset);
 #endif
 
   return do_client_connect(mysql, opts, flags);

@@ -31,17 +31,18 @@
 
 
 #if defined(HAVE_OPENSSL) && !defined(EMBEDDED_LIBRARY) && !defined(SSL_VARS_STATIC) && !defined(SSL_VARS_NON_STATIC)
-#define INIT_SLL_OPTS   \
-  .opt_use_ssl    = 1,  \
-  .opt_ssl_ca     = 0,  \
-  .opt_ssl_capath = 0,  \
-  .opt_ssl_cert   = 0,  \
-  .opt_ssl_cipher = 0,  \
-  .opt_ssl_key    = 0,  \
-  .opt_ssl_crl    = 0,  \
-  .opt_ssl_crlpath= 0,  \
-  .opt_tls_version= 0   \
-  INIT_SSL_VERIFY
+/*
+ * opt_use_ssl    = 1
+ * opt_ssl_ca     = 0
+ * opt_ssl_capath = 0
+ * opt_ssl_cert   = 0
+ * opt_ssl_cipher = 0
+ * opt_ssl_key    = 0
+ * opt_ssl_crl    = 0
+ * opt_ssl_crlpath= 0
+ * opt_tls_version= 0
+ */
+#define INIT_SLL_OPTS , 1, 0, 0, 0, 0, 0, 0, 0, 0
 #else
 #define INIT_SLL_OPTS
 #endif /* HAVE_OPENSSL */

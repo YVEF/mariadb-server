@@ -43,33 +43,12 @@ typedef struct st_clnt_connect_options
 #include "sslopt-vars.h"
 } CLNT_CONNECT_OPTIONS;
 
-#define CL_INIT_OPTS(...)  \
-{                          \
-  __VA_ARGS__,             \
-  INIT_SLL_OPTS            \
-}
+#define CL_INIT_OPTS(...)       \
+{ __VA_ARGS__ INIT_SLL_OPTS }
 
-#define CLNT_INIT_OPTS_WITH_PRG_NAME_DEFCHAR_DB_USR(prog_name, defchar, db, usr)  \
-  CL_INIT_OPTS(                                                                   \
-    .secure_auth= 0,                                                              \
-    .protocol= 0,                                                                 \
-    .plugin_dir= NULL,                                                            \
-    .program_name= prog_name,                                                     \
-    .compress= 0,                                                                 \
-    .port= 0,                                                                     \
-    .default_charset= defchar,                                                    \
-    .charsets_dir= NULL,                                                          \
-    .default_auth= NULL,                                                          \
-    .bind_address= NULL,                                                          \
-    .socket= NULL,                                                                \
-    .read_timeout= 0,                                                             \
-    .write_timeout= 0,                                                            \
-    .connect_timeout= 0,                                                          \
-    .host= NULL,                                                                  \
-    .user= usr,                                                                   \
-    .database= db,                                                                \
-    .password= NULL                                                               \
-  )
+#define CLNT_INIT_OPTS_WITH_PRG_NAME_DEFCHAR_DB_USR(prog_name, defchar, db, usr) \
+  CL_INIT_OPTS(0, 0, NULL, prog_name, 0, 0, defchar, NULL, NULL,                 \
+               NULL, NULL, 0, 0, 0, NULL, usr, db, NULL)
 
 #define CLNT_INIT_OPTS_WITH_PRG_NAME_DEFCHAR_DB(prog_name, defchar, db)        \
   CLNT_INIT_OPTS_WITH_PRG_NAME_DEFCHAR_DB_USR(prog_name, defchar, db, NULL)
