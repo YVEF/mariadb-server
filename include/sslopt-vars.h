@@ -17,9 +17,10 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
 
 #ifdef MYSQL_CLIENT
-#define INIT_SSL_VERIFY ,.opt_ssl_verify_server_cert= 0
+/* opt_ssl_verify_server_cert= 0 */
+#define INIT_SSL_VERIFY_CERT ,0
 #else
-#define INIT_SSL_VERIFY
+#define INIT_SSL_VERIFY_CERT
 #endif
 
 /* Use SSL_VARS_STATIC and SSL_VARS_NON_STATIC to declare static/global variables. */
@@ -42,7 +43,7 @@
  * opt_ssl_crlpath= 0
  * opt_tls_version= 0
  */
-#define INIT_SLL_OPTS , 1, 0, 0, 0, 0, 0, 0, 0, 0
+#define INIT_SLL_OPTS , 1, 0, 0, 0, 0, 0, 0, 0, 0 INIT_SSL_VERIFY_CERT
 #else
 #define INIT_SLL_OPTS
 #endif /* HAVE_OPENSSL */
